@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Accès Restreint à la Vente de Billets</title>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+        <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+            <div class="container mt-5">
+                <h1 class="mb-4 text-center">
+                    Accès Restreint à la Vente de Billets
+                </h1>
+
+                <!-- Présentation des tickets -->
+                <h2 class="text-center mb-4">Types de Billets Disponibles</h2>
+                <div class="ticket-types mb-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Billet Duo</strong> : Pour 2 personnes. Idéal pour les couples ou amis.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Billet Family</strong> : Pour 4 personnes. Parfait pour les familles.
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Billet Solo</strong> : Un billet pour une personne.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Rappel pour se connecter et activer 2FA -->
+                <p class="text-center mt-4">
+                    Pour accéder à la vente de billets, vous devez être inscrit et connecté à votre compte.
+                </p>
+
+                <p class="text-center">
+                    De plus, il est nécessaire d'activer l'authentification à deux facteurs (2FA) afin de sécuriser votre compte.
+                </p>
+
+                <!-- Boutons d'action -->
+                <div class="d-grid mb-3">
+                    <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">
+                        Se connecter
+                    </a>
+                </div>
+
+                <div class="d-grid mb-3">
+                    <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg">
+                        Créer un compte
+                    </a>
+                </div>
+
+                <div class="d-grid">
+                    <a href="{% url 'two-factor-setup' %}" class="btn btn-warning btn-lg">
+                        Configurer l'authentification à deux facteurs
+                    </a>
+                </div>
+
+                <!-- Section de contact -->
+                <div class="text-center mt-4">
+                    <p>Si vous rencontrez des difficultés, veuillez nous contacter.</p>
+                    <a href="{% url 'contact' %}" class="btn btn-link">
+                        Contactez-nous
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Accueil</title>
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+<body>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+            <img src="{% static 'images/first_slide.jpg' %}" alt="Image 1" class="d-block w-100" style="height: 500px; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption text-start">
+              <div class="d-flex justify-content-center mb-5">
+                    <div class="text-center bg-white shadow p-3 rounded">
+                        <h1 style="color: black;">Le calendrier des sports Olympiques</h1>
+                        <p style="color: black;">La finale du 100m nage libre ou du 400m haies, le marathon olympique, les épreuves par équipes d’escrime, les finales des tournois féminins et masculins de football, de handball ou encore de rugby à 7… Découvrez les événements marquants des Jeux Olympiques de Paris 2024.</p>
+                    </div>
+              </div>
+                <p><a class="btn btn-lg btn-primary" href="#">S'inscrire aujourd'hui</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/secound_slide.jpg' %}" alt="Image 2" class="d-block w-100" style="height: 500px; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption">
+              <div class="d-flex justify-content-center mb-5">
+                <div class="text-center bg-white shadow p-3 rounded">
+                    <h1 style="color: black;">Pentathlon moderne : Épreuve individuelle hommes</h1>
+                    <p style="color: black;">Marie Oteiza s'est qualifiée pour la finale avec un total de 1395 points. Elle a pris la 7e place dans les épreuves qualificatives, laissant la première place à la Britannique Kerenza Bryson.</p>
+                </div>
+              </div>
+            <p><a class="btn btn-lg btn-primary" href="#">Acheter vos billets</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/third_slide.jpg' %}" alt="Image 3" class="d-block w-100" style="height: 500px; object-fit: cover;">
+        <div class="container">
+          <div class="carousel-caption text-end">
+              <div class="d-flex justify-content-center mb-5">
+                <div class="text-center bg-white shadow p-3 rounded">
+                    <h1 style="color: black;">JO de Paris 2024 - Skeet : l'Italie décroche l'or</h1>
+                </div>
+              </div>
+            <p><a class="btn btn-lg btn-primary" href="#">Voir la galerie</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Précédent</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Suivant</span>
+    </button>
+  </div>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Article 1: Athlétisme -->
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{% static 'images/athletics.jpg' %}" alt="Athlétisme" style="height: 225px; width: 100%; object-fit: cover;">
+                <div class="card-body">
+                    <h3 style="color: black;">Athlétisme</h3>
+                    <p style="color: black;">L'athlétisme, un sport emblématique des Jeux, comprend diverses épreuves telles que le sprint, les sauts et les lancers. Ce sport est le reflet des capacités physiques et de la quête d'excellence.</p>
+                    <p><a class="btn btn-sm btn-primary" href="#">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 2: Natation -->
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{% static 'images/swimming.jpg' %}" alt="Natation" style="height: 225px; width: 100%; object-fit: cover;">
+                <div class="card-body">
+                    <h3 style="color: black;">Natation</h3>
+                    <p style="color: black;">La natation est l'un des sports les plus populaires des Jeux Olympiques. Avec des épreuves comme le 100m nage libre et le 200m papillon, les athlètes repoussent leurs limites dans l'eau.</p>
+                    <p><a class="btn btn-sm btn-primary" href="#">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 3: Escrime -->
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{% static 'images/fencing.jpg' %}" alt="Escrime" style="height: 225px; width: 100%; object-fit: cover;">
+                <div class="card-body">
+                    <h3 style="color: black;">Escrime</h3>
+                    <p style="color: black;">L'escrime, un sport de combat élégant, met en avant la stratégie, la rapidité et la précision. Les athlètes s'affrontent dans des duels passionnants avec des épées, sabres ou fleurets.</p>
+                    <p><a class="btn btn-sm btn-primary" href="#">En savoir plus</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

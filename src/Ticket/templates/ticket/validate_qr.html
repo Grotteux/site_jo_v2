@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Valider un QR Code</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-5">
+        <div class="text-center bg-white shadow p-3 rounded">
+            <h1 class="mb-0">Scanner et Valider un QR Code</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                <!-- Formulaire pour soumettre le QR Code scanné -->
+                <form id="validateQrForm" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="qr_data" class="form-label">Clé QR Code :</label>
+                        <input type="text" class="form-control" id="qr_data" name="qr_data" placeholder="Scannez ou entrez le code QR">
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" class="btn btn-primary btn-lg">Soumettre la validation</button>
+                    </div>
+                </form>
+                <div id="validationResult" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

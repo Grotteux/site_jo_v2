@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Mes Billets</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-5">
+        <div class="text-center bg-white shadow p-3 rounded">
+            <h1 class="mb-0">Mes Billets</h1>
+        </div>
+    </div>
+
+
+    {% if purchases_with_qr %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Type de Ticket</th>
+                            <th>Prix</th>
+                            <th>Date d'Achat</th>
+                            <th>QR Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in purchases_with_qr %}
+                            <tr>
+                                <td>{{ item.purchase.ticket.type }}</td>
+                                <td>{{ item.purchase.ticket.price }}€</td>
+                                <td>{{ item.purchase.purchase_date|date:"d M Y H:i" }}</td>
+                                <td>
+                                    <img src="data:image/png;base64,{{ item.qr_code_base64 }}" alt="QR Code" class="img-fluid" style="max-width: 100px;">
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm text-center">
+                <p class="mb-0">Vous n'avez encore acheté aucun billet.</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

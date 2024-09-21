@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Choisissez vos tickets</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-5">
+        <div class="text-center bg-white shadow p-3 rounded">
+            <h1 class="mb-0">Choisissez vos tickets</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                <form id="ticketForm">
+                    {% for ticket in tickets %}
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="ticket_{{ ticket.id }}" name="tickets" value="{{ ticket.id }}">
+                                <label class="form-check-label" for="ticket_{{ ticket.id }}">
+                                    {{ ticket.type }} - {{ ticket.price }}€
+                                </label>
+                            </div>
+                            <input type="hidden" id="price_{{ ticket.id }}" value="{{ ticket.price }}">
+                            <div class="mt-2">
+                                <label for="quantity_{{ ticket.id }}" class="form-label">Quantité</label>
+                                <input type="number" class="form-control" id="quantity_{{ ticket.id }}" name="quantity_{{ ticket.id }}" min="1" value="1" disabled>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </form>
+
+                <div class="d-grid">
+                    <button id="addToCartGlobal" class="btn btn-primary btn-lg mb-2">Ajouter au panier</button>
+                    <button id="resetCart" class="btn btn-danger btn-lg">Reset Panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panier -->
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                <h2 class="mb-4">Panier</h2>
+                <div id="cart">
+                    <ul id="cartItems" class="list-group mb-3"></ul>
+                    <p><strong>Total :</strong> <span id="totalPrice">0</span> €</p>
+                </div>
+                <h4 class="mb-3">Sélectionnez une méthode de paiement</h4>
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked>
+                        <label class="form-check-label" for="creditCard">
+                            Carte de crédit
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal">
+                        <label class="form-check-label" for="paypal">
+                            PayPal
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer">
+                        <label class="form-check-label" for="bankTransfer">
+                            Virement bancaire
+                        </label>
+                    </div>
+                </div>
+
+                <button id="submitCart" class="btn btn-success btn-lg">Valider le panier</button>
+                <div id="confirmation" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const csrfToken = '{{ csrf_token }}';
+    const processPurchaseUrl = "{% url 'process_purchase' %}";
+</script>
+
+<script src="{% static 'ticket/js/cart.js' %}"></script>
+{% endblock %}

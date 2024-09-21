@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Administration - Billets Vendus</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-5">
+        <div class="text-center bg-white shadow p-3 rounded">
+        <h1 class="text-center">Administration - Nombre de billets vendus</h1>
+        <p class="text-center">Total des billets vendus : <strong>{{ total_tickets_vendus }}</strong></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-left">
+        <div class="text-center bg-white rounded">
+            <h2 class="mt-4">Billets vendus par type</h2>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Type de billet</th>
+                <th>Nombre de billets vendus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets_par_type %}
+            <tr>
+                <td>{{ ticket.ticket__type }}</td>
+                <td>{{ ticket.nombre_vendus }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" class="text-center">Aucun billet vendu</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
