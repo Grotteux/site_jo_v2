@@ -4,18 +4,18 @@ import uuid
 
 User = get_user_model()
 
-class Ticket(models.Model):
-    TICKET_CHOICES = [
-        ('DUO', 'Duo'),
-        ('SOLO', 'Solo'),
-        ('FAMILY', 'Family'),
-    ]
+class TicketType(models.Model):
+    name = models.CharField(max_length=50, unique=True)
 
-    type = models.CharField(max_length=10, choices=TICKET_CHOICES)
+    def __str__(self):
+        return self.name
+
+class Ticket(models.Model):
+    type = models.ForeignKey(TicketType, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return f"{self.get_type_display()} - {self.price}€"
+        return f"{self.type} - {self.price}€"
 
 class Purchase(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)

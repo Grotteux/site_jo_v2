@@ -33,11 +33,13 @@ def process_purchase(request):
             for _ in range(quantity):
                 purchase = Purchase.objects.create(ticket=ticket, user=request.user)
                 purchases.append({
-                    'ticket': ticket.type,
-                    'price': str(ticket.price),
-                    'unique_key': str(purchase.unique_key)
+                    'ticket': ticket.type.name,  # Convertir en une chaîne lisible
+                    'price': str(ticket.price),  # Convertir en chaîne
+                    'unique_key': str(purchase.unique_key)  # Convertir en chaîne
                 })
+
         return JsonResponse({'status': 'success', 'purchases': purchases})
+
 @two_factor_required
 @login_required
 def my_tickets(request):
@@ -75,13 +77,14 @@ def admin_dashboard(request):
     # Calcul du nombre total de tickets vendus
     total_tickets_vendus = Purchase.objects.count()
 
-    # Calcul du nombre de tickets vendus par type
-    tickets_par_type = Purchase.objects.values('ticket__type').annotate(nombre_vendus=Count('ticket__type'))
+    # Calcul du nombre de tickets vendus par type (accéder au nom du type de billet)
+    tickets_par_type = Purchase.objects.values('ticket__type__name').annotate(nombre_vendus=Count('ticket__type'))
 
     context = {
         'total_tickets_vendus': total_tickets_vendus,
         'tickets_par_type': tickets_par_type,
     }
     return render(request, 'ticket/admin_dashboard.html', context)
+
 
 

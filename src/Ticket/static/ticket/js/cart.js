@@ -97,10 +97,12 @@ $("#submitCart").on("click", function () {
         );
       }
     },
-    error: function () {
-      $("#confirmation").html(
-        "<p>Erreur lors de la soumission du formulaire.</p>"
-      );
-    },
+    error: function (xhr, status, error) {
+        console.error("Erreur lors de la soumission du formulaire :", xhr.responseText);
+        $("#confirmation").html(
+            `<p>Erreur lors de la soumission du formulaire : ${xhr.responseText}</p>`
+    );
+   },
+
   });
 });

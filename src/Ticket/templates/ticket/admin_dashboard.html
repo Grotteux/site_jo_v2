@@ -27,7 +27,7 @@
         <tbody>
             {% for ticket in tickets_par_type %}
             <tr>
-                <td>{{ ticket.ticket__type }}</td>
+                <td>{{ ticket.ticket__type__name }}</td>
                 <td>{{ ticket.nombre_vendus }}</td>
             </tr>
             {% empty %}
