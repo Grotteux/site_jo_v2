@@ -1,17 +1,20 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import Ticket, Purchase
+from .models import Ticket, TicketType, Purchase
 from django.contrib.auth.models import User
-
 
 class TicketTestCase(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpass')
 
-        # Créer des billets
-        self.ticket_solo = Ticket.objects.create(type='Solo', price=50)
-        self.ticket_duo = Ticket.objects.create(type='Duo', price=90)
+        # Créer des types de tickets
+        self.ticket_type_solo = TicketType.objects.create(name='Solo')
+        self.ticket_type_duo = TicketType.objects.create(name='Duo')
+
+        # Créer des billets en utilisant les types de tickets
+        self.ticket_solo = Ticket.objects.create(type=self.ticket_type_solo, price=50)
+        self.ticket_duo = Ticket.objects.create(type=self.ticket_type_duo, price=90)
 
     def test_ticket_creation(self):
         self.assertEqual(Ticket.objects.count(), 2)
@@ -28,4 +31,3 @@ class TicketTestCase(TestCase):
         response = self.client.get(reverse('ticket_list'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Choisissez vos tickets')
-
