@@ -9,14 +9,12 @@ User = get_user_model()
 
 class UtilisateursViewsTests(TestCase):
     def test_cgu_view(self):
-        """Test que la vue cgu retourne une réponse 200 et utilise le bon template."""
-        response = self.client.get(reverse('cgu'))  # Assurez-vous que l'URL 'cgu' est correctement configurée
+        response = self.client.get(reverse('cgu'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'cgu.html')
 
     def test_account_profile_view(self):
-        """Test que la vue account_profile retourne une réponse 200 et utilise le bon template."""
-        response = self.client.get(reverse('account_profile'))  # Assurez-vous que l'URL 'account_profile' est correcte
+        response = self.client.get(reverse('account_profile'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'account_profile.html')
 class KeyUserModelTests(TestCase):
@@ -41,7 +39,7 @@ class CustomSignupFormTests(TestCase):
         form = CustomSignupForm(data=form_data)
         self.assertTrue(form.is_valid())
         request = self.factory.post("/signup/", form_data)
-        request.session = self.client.session  # Simuler une session pour éviter l'erreur
+        request.session = self.client.session
         user = form.save(request)
         self.assertEqual(user.first_name, "John")
         self.assertEqual(user.last_name, "Doe")
